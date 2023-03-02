@@ -112,37 +112,39 @@ namespace GraphQLExercise
                         var ProductId = cxt.GetArgument<int>("pid");
                         return Products.First(p => p.Id == ProductId); 
                     });
-                Field<ProductType>("Products")
-                    .Argument<int?>("after")
-                    .Argument<int?>("before")
-                    .Argument<int?>("first")
-                    .Argument<int?>("last")
-                    .Resolve(cxt =>
-                    {
-                        var productQuery = Products.AsQueryable();
-                        var after = cxt.GetArgument<int?>("after");
-                        var before = cxt.GetArgument<int?>("before");
-                        var first = cxt.GetArgument<int?>("first");
-                        var last = cxt.GetArgument<int?>("last");
-                        if (after.HasValue)
-                        {
-                            productQuery.Where(x => x.Id >= after.Value);
-                        }
-                        if (before.HasValue)
-                        {
-                            productQuery.Where(x => x.Id <= before.Value);
-                        }
+                //Field<ProductType>("Products")
+                //    .Argument<int?>("after")
+                //    .Argument<int?>("before")
+                //    .Argument<int?>("first")
+                //    .Argument<int?>("last")
+                //    .Resolve(cxt =>
+                //    {
+                //        var productQuery = Products.AsQueryable();
+                //        var after = cxt.GetArgument<int?>("after");
+                //        var before = cxt.GetArgument<int?>("before");
+                //        var first = cxt.GetArgument<int?>("first");
+                //        var last = cxt.GetArgument<int?>("last");
+                //        // 以id作為cursor
+                //        if (after.HasValue)
+                //        {
+                //            productQuery.Where(x => x.Id >= after.Value);
+                //        }
+                //        if (before.HasValue)
+                //        {
+                //            productQuery.Where(x => x.Id <= before.Value);
+                //        }
 
-                        if (first.HasValue)
-                        {
-                            productQuery.Take(first.Value);
-                        }
-                        else if (last.HasValue)
-                        {
-                            productQuery.TakeLast(last.Value);
-                        }
-                        return productQuery.ToList();
-                    });
+                //        if (first.HasValue)
+                //        {
+                //            productQuery.Take(first.Value);
+                //        }
+                //        else if (last.HasValue)
+                //        {
+                //            productQuery.TakeLast(last.Value);
+                //        }
+                //        // 回傳資料可能要以edge作範例
+                //        return productQuery.ToList();
+                //    });
                 //Field<Product>("Products")
                 //    .Argument<int>("");
             }
