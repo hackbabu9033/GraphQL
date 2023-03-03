@@ -1,3 +1,4 @@
+using GraphQLServer.GraphQLType;
 using GraphQLServerExercise.GraphQLQuery;
 
 namespace GraphQLServerExercise
@@ -10,6 +11,7 @@ namespace GraphQLServerExercise
 
             builder.Services
                   .AddGraphQLServer()
+                  .AddMutationType<Mutation>()
                   .AddQueryType<Query>();
 
             var app = builder.Build();

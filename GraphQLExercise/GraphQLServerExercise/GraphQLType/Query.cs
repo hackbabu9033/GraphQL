@@ -4,6 +4,7 @@ namespace GraphQLServerExercise.GraphQLQuery
 {
     public class Query
     {
+        public static List<Book> _books = new List<Book>();
         public Book GetBook() =>
                new Book
                {
@@ -21,6 +22,12 @@ namespace GraphQLServerExercise.GraphQLQuery
             {
                 Title = $"C#, Version:{version}",
             };
+        }
+
+        public bool AddBook(Book book)
+        {
+            _books.Add(book);
+            return true;
         }
     }
 }
